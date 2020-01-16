@@ -1,0 +1,6 @@
+package bean
+
+class AppActiveBackground {
+
+
+}
