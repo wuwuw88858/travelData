@@ -1,40 +1,110 @@
 package bean
 
+import java.util.UUID
+
+import scala.util.Random
+
 //公共日志
 class AppBase {
 
-   val mid:String = "" ;// (String) 设备唯一标识
+   var mobile_phone_id: String = _;// (String) 设备唯一标识
 
-   val uid:String = "" ; // (String) 用户uid
+   var user_id:String =_ ; // (String) 用户uid
 
-   val vc:String = "" ; // (String) versionCode，程序版本号
+   var version_code:String =_ ; // (String) versionCode，程序版本号
 
-   val vn :String = "" ; // (String) versionName，程序版本名
+   var version_name :String =_ ; // (String) versionName，程序版本名
 
-   val l:String = "" ; // (String) 系统语言
+   var mobile_phone_system:String =_;  //系统版本
 
-   val sr:String = "" ; // (String) 渠道号，应用从哪个渠道来的。
+   var language:String =_ ; // (String) 系统语言
 
-   val os:String = "" ; // (String) Android系统版本
+   var mobile_phone_model :String =_ ; // (String) 手机型号
 
-   val ar:String = "" ; // (String) 区域
+   var phone_brand:String =_ ;// (String) 手机品牌
 
-   val md :String = "" ; // (String) 手机型号
+   var time :String =_ ; // (String) 客户端日志产生时的时间
 
-   val ba:String = "" ;// (String) 手机品牌
+   var network :String =_ ; // (String) 网络模式
+   
+   
 
-   val sv :String = "" ; // (String) sdkVersion
+}
 
-   val g :String = "" ; // (String) gmail
+object AppBase {
+   def apply(): AppBase = new AppBase();
 
-   val hw :String = "" ;// (String) heightXwidth，屏幕宽高
+   //公共字段设置
+   def generateComFields(): AppBase = {
 
-   val t :String = "" ; // (String) 客户端日志产生时的时间
+      var appBase:AppBase = AppBase();
+      //设备id
+      appBase.mobile_phone_id = UUID.randomUUID().toString.substring(0, 8);
 
-   val nw :String = "" ; // (String) 网络模式
+      //用户id
+      appBase.user_id =  UUID.randomUUID().toString.substring(0, 8);
 
-   val ln :String = "" ;// (double) lng经度
+      //程序版本号
+      appBase.version_code = "" + Random.nextInt(20);
 
-   val la :String = "" ; // (double) lat 纬度
+      //程序版本名称
+      appBase.version_name = "1." + Random.nextInt(4) + "." + Random.nextInt(10);
+
+      //手机系统版本号
+      appBase.mobile_phone_system = "8." + Random.nextInt(3) + "." + Random.nextInt(10);
+
+
+      //设置手机语言
+      appBase.language = "en";
+
+      //设置手机品牌
+      var flag = Random.nextInt(7);
+
+      flag match {
+         case 0 => {
+            appBase.phone_brand = "Iphone";
+            appBase.mobile_phone_model = "Iphone6"
+         }
+         case 1 => {
+            appBase.phone_brand = "Iphone";
+            appBase.mobile_phone_model = "Iphone8"
+         }
+         case 2 => {
+            appBase.phone_brand = "Iphone";
+            appBase.mobile_phone_model = "IphoneX"
+         }
+
+         case 3 => {
+            appBase.phone_brand = "Iphone";
+            appBase.mobile_phone_model = "Iphone11 PRO"
+         }
+         case 4 => {
+            appBase.phone_brand = "Sumsung";
+            appBase.mobile_phone_model = "Sumsung" + Random.nextInt(20);
+         }
+
+         case 5 => {
+            appBase.phone_brand = "小米";
+            appBase.mobile_phone_model = "小米" + Random.nextInt(20);
+         }
+
+         case _ => {
+            appBase.phone_brand = "华为";
+            appBase.mobile_phone_model = "华为" + Random.nextInt(20);
+         }
+      }
+
+      //日志产生时间
+      val millis:Long = System.currentTimeMillis()
+      appBase.time = "" + (millis - Random.nextInt(99999999));
+
+      //手机网络
+      var phoneNetWork = Random.nextInt(1);
+      phoneNetWork match {
+         case 0 => appBase.network = "4G";
+         case 1 => appBase.network = "WIFI";
+      }
+      appBase;
+   }
 
 }

@@ -3,9 +3,9 @@ package bean
 //用户收藏
 class AppFavorites {
 
-  val id:String = ""; //主键
-  val course_id:String = "";  //旅游地id
-  val user_id:String = "";  //收藏者id
-  val add_time:String = ""; //创建时间
+  var id:String =_; //主键
+  var course_id:String =_;  //旅游地id
+  var user_id:String =_;  //收藏者id
+  var add_time:String =_; //创建时间
 
 }
