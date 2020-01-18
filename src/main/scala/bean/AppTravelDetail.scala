@@ -2,6 +2,8 @@ package bean
 
 import java.util.UUID
 
+import Utils.BuildingCalibrateHeightType
+
 import scala.util
 import scala.util.Random
 
@@ -28,7 +30,7 @@ class AppTravelDetail {
 object AppTravelDetail{
   def apply(): AppTravelDetail = new AppTravelDetail()
 
-  def generateTravelDetail: Unit ={
+  def generateTravelDetail(): AppTravelDetail ={
    var appTravelDetail:AppTravelDetail = AppTravelDetail();
     var flag = Random.nextInt(3) + 1;
 
@@ -44,73 +46,73 @@ object AppTravelDetail{
     flag match {
       case 0 => {
         //旅游地ID
-        appTravelDetail.travel_place_id = UUID.randomUUID().toString.substring(0, 8);
+        appTravelDetail.travel_place_id = BuildingCalibrateHeightType.place1 + "";
         appTravelDetail.travel_place_name = "长隆欢乐世界";
         appTravelDetail.travel_place_area = "广东省";
       }
       case 1 => {
         //旅游地ID
-        appTravelDetail.travel_place_id = UUID.randomUUID().toString.substring(0, 8);
+        appTravelDetail.travel_place_id =  BuildingCalibrateHeightType.place2 + "";
         appTravelDetail.travel_place_name = "佛山南山古灶";
         appTravelDetail.travel_place_area = "广东省";
       }
       case 2 => {
         //旅游地ID
-        appTravelDetail.travel_place_id = UUID.randomUUID().toString.substring(0, 8);
+        appTravelDetail.travel_place_id =  BuildingCalibrateHeightType.place3 + "";
         appTravelDetail.travel_place_name = "故宫";
         appTravelDetail.travel_place_area = "北京市";
       }
       case 3 => {
         //旅游地ID
-        appTravelDetail.travel_place_id = UUID.randomUUID().toString.substring(0, 8);
+        appTravelDetail.travel_place_id =  BuildingCalibrateHeightType.place4 + "";
         appTravelDetail.travel_place_name = "九寨沟";
         appTravelDetail.travel_place_area = "四川省";
       }
       case 4 => {
         //旅游地ID
-        appTravelDetail.travel_place_id = UUID.randomUUID().toString.substring(0, 8);
+        appTravelDetail.travel_place_id =  BuildingCalibrateHeightType.place5 + "";
         appTravelDetail.travel_place_name = "丽江古城";
         appTravelDetail.travel_place_area = "云南省";
       }
       case 5 => {
         //旅游地ID
-        appTravelDetail.travel_place_id = UUID.randomUUID().toString.substring(0, 8);
+        appTravelDetail.travel_place_id =  BuildingCalibrateHeightType.place6 + "";
         appTravelDetail.travel_place_name = "西湖";
         appTravelDetail.travel_place_area = "浙江省";
       }
       case 6 => {
         //旅游地ID
-        appTravelDetail.travel_place_id = UUID.randomUUID().toString.substring(0, 8);
+        appTravelDetail.travel_place_id =  BuildingCalibrateHeightType.place7 + "";
         appTravelDetail.travel_place_name = "泰山";
         appTravelDetail.travel_place_area = "山东省";
       }
       case 7 => {
         //旅游地ID
-        appTravelDetail.travel_place_id = UUID.randomUUID().toString.substring(0, 8);
+        appTravelDetail.travel_place_id =  BuildingCalibrateHeightType.place8 + "";
         appTravelDetail.travel_place_name = "八达岭";
         appTravelDetail.travel_place_area = "北京市";
       }
       case 8 => {
         //旅游地ID
-        appTravelDetail.travel_place_id = UUID.randomUUID().toString.substring(0, 8);
+        appTravelDetail.travel_place_id =  BuildingCalibrateHeightType.place9 + "";
         appTravelDetail.travel_place_name = "天安门";
         appTravelDetail.travel_place_area = "北京市";
       }
       case 9 => {
         //旅游地ID
-        appTravelDetail.travel_place_id = UUID.randomUUID().toString.substring(0, 8);
+        appTravelDetail.travel_place_id =  BuildingCalibrateHeightType.place10 + "";
         appTravelDetail.travel_place_name = "鼓浪屿岛";
         appTravelDetail.travel_place_area = "福建省";
       }
       case 10 => {
         //旅游地ID
-        appTravelDetail.travel_place_id = UUID.randomUUID().toString.substring(0, 8);
+        appTravelDetail.travel_place_id =  BuildingCalibrateHeightType.place11 + "";
         appTravelDetail.travel_place_name = "湘西凤凰古城";
         appTravelDetail.travel_place_area = "湖南省";
       }
       case _ => {
         //旅游地ID
-        appTravelDetail.travel_place_id = UUID.randomUUID().toString.substring(0, 8);
+        appTravelDetail.travel_place_id =  BuildingCalibrateHeightType.place12 + "";
         appTravelDetail.travel_place_name = "东方明珠";
         appTravelDetail.travel_place_area = "上海市";
       }

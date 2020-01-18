@@ -2,11 +2,12 @@ package logcollect
 
 import java.util.UUID
 
-import bean.{AppBase, AppStart}
+import bean._
 import com.alibaba.fastjson.{JSONArray, JSONObject}
 import com.google.gson.Gson
 import org.slf4j.{Logger, LoggerFactory}
 
+import scala.reflect.ClassTag
 import scala.util.Random
 
 
@@ -52,7 +53,7 @@ object App   {
           var appStart:AppStart = AppStart.generateStart();
 
           val appStartStr:String = gson.toJson(appStart, classOf[AppStart]);
-//          logger.info(appStartStr);
+       //      logger.info(appStartStr);
         }
         case 1 =>{
           val gson = new Gson;
@@ -61,14 +62,46 @@ object App   {
 
           jsonObject.put("ap", "app");
           val appBase:String = gson.toJson(AppBase.generateComFields(), classOf[AppBase]);
-          jsonArray.add(appBase);
-          jsonObject.put("em", jsonArray);
+          jsonObject.put("cm", appBase);
 
+          //点击
+          jsonArray.add(packEvnetJson("travel_display", gson.toJson(AppDisplay.generateDisplay(), classOf[AppDisplay])));
+
+          //列表
+          jsonArray.add(packEvnetJson("travel_list", gson.toJson(AppList.generateList(), classOf[AppList])));
+
+          //详情
+          jsonArray.add(packEvnetJson("travel_detail", gson.toJson(AppTravelDetail.generateTravelDetail(), classOf[AppTravelDetail])));
+          jsonObject.put("event", jsonArray);
+
+          //下单
           if (Random.nextBoolean()) {
-
+            jsonArray.add(packEvnetJson("travel_order", gson.toJson(AppOrder.generateAppOrder(), classOf[AppOrder])));
           }
 
-          logger.info(jsonObject.toJSONString);
+          //收藏
+          if (Random.nextBoolean()) {
+            jsonArray.add(packEvnetJson("travel_order", gson.toJson(AppOrder.generateAppOrder(), classOf[AppOrder])));
+          }
+          //评论
+          if (Random.nextBoolean()) {
+            jsonArray.add(packEvnetJson("travel_comment", gson.toJson(AppComment.generateAppComment(), classOf[AppComment])));
+          }
+          //广告
+          if (Random.nextBoolean()) {
+            jsonArray.add(packEvnetJson("travel_advr", gson.toJson(AppAd.generateAppAd(), classOf[AppAd])));
+          }
+          //购买产品
+         if (Random.nextBoolean()) {
+            jsonArray.add(packEvnetJson("travel_product", gson.toJson(AppTravelProduct.generateTravelProduce(), classOf[AppTravelProduct])));
+          }
+          //点赞
+          if (Random.nextBoolean()) {
+            jsonArray.add(packEvnetJson("travel_praise", gson.toJson(AppPraise.generateAppPraise(), classOf[AppPraise])));
+          }
+
+          val millis = System.currentTimeMillis();
+          logger.info(millis + "|" + jsonObject.toJSONString);
 
         }
       }
@@ -77,8 +110,13 @@ object App   {
   }
 
 
-
-
-
+  //
+  def packEvnetJson[T:ClassTag](eventName:String, t: T):JSONObject = {
+    val obj = new JSONObject();
+    obj.put("ett", (System.currentTimeMillis() - Random.nextInt(99999999)) + "");
+    obj.put("event_name", eventName);
+    obj.put("action", t);
+    obj;
+  }
 
 }

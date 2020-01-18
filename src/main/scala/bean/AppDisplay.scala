@@ -32,7 +32,7 @@ object AppDisplay {
     }
 
     //旅游地id
-    disPlay.travel_place_id = UUID.randomUUID().toString.substring(0, 9);
+    disPlay.travel_place_id = UUID.randomUUID().toString.replace("-", "");
     
     //顺序
     var flag = Random.nextInt(6);
