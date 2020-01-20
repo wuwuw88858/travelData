@@ -49,6 +49,11 @@
 
     <!--日志生产框架-->
     <dependency>
+      <groupId>com.typesafe.scala-logging</groupId>
+      <artifactId>scala-logging_2.12</artifactId>
+      <version>3.5.0</version>
+    </dependency>
+    <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
       <version>${logback.version}</version>
@@ -76,6 +81,15 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/scala/resources</directory>
+        <excludes>
+          <exclude>*/*.xml</exclude>
+        </excludes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
     <!--项目源码目录-->
     <sourceDirectory>src/main/scala</sourceDirectory>
     <testSourceDirectory>src/test/scala</testSourceDirectory>

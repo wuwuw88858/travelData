@@ -1,11 +1,9 @@
 package logcollect
 
-import java.util.UUID
-
 import bean._
 import com.alibaba.fastjson.{JSONArray, JSONObject}
 import com.google.gson.Gson
-import org.slf4j.{Logger, LoggerFactory}
+import com.typesafe.scalalogging.Logger
 
 import scala.reflect.ClassTag
 import scala.util.Random
@@ -16,7 +14,7 @@ import scala.util.Random
  *
  */
 object App   {
-  var logger:Logger = LoggerFactory.getLogger(App.getClass);
+   val logger = Logger(this.getClass);
   private var random:String = Random.nextInt(100).toString();
   private var s_mid:String =_;  //设备id
   private var s_uid:String =_;  //用户id
@@ -53,7 +51,7 @@ object App   {
           var appStart:AppStart = AppStart.generateStart();
 
           val appStartStr:String = gson.toJson(appStart, classOf[AppStart]);
-       //      logger.info(appStartStr);
+             logger.info(appStartStr);
         }
         case 1 =>{
           val gson = new Gson;
@@ -110,7 +108,7 @@ object App   {
   }
 
 
-  //
+  //21:49:25.337 [main] INFO  logcollect.App$
   def packEvnetJson[T:ClassTag](eventName:String, t: T):JSONObject = {
     val obj = new JSONObject();
     obj.put("ett", (System.currentTimeMillis() - Random.nextInt(99999999)) + "");
